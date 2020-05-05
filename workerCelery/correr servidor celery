@@ -1,0 +1,18 @@
+
+iniciar servicio celery:
+
+colocarse en la raiz del proyecto y ejecutar
+
+celery -A workerCelery.tasksCelery.celery worker --pool=solo -l info
+
+colocar nombre a un worker:
+
+celery -A workerCelery.tasksCelery.celery worker --pool=solo -l info -n Nombre_del_worker@%h -Q Nombre_de_la_cola
+
+iniciar servicio celery con nombre y una cola de tareas en especificos:
+
+
+worker 1: celery -A workerCelery.tasksCelery.celery worker --pool=solo -l info -n WorkerGet/postWords@%h -Q get-post.fifo
+worker 2: celery -A workerCelery.tasksCelery.celery worker --pool=solo -l info -n WorkerEdit/updateWord@%h -Q edit-update.fifo
+worker 3: celery -A workerCelery.tasksCelery.celery worker --pool=solo -l info -n WorkerAddTask@%h -Q AddTask.fifo
+worker 4: celery -A workerCelery.tasksCelery.celery worker --pool=solo -l info -n WorkerEmail@%h -Q Email.fifo
